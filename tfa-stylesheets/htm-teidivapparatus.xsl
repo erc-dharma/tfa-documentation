@@ -164,7 +164,7 @@
   <xsl:template match="t:div[@type='apparatus']" priority="1">
     <xsl:param name="parm-external-app-style" tunnel="yes" required="no"/>
     <div id="apparatus">
-      <h2>apparatus</h2>
+      <h2>Apparatus</h2>
       <p>
         <xsl:apply-templates/>
       </p>
@@ -173,17 +173,20 @@
 
   <xsl:template match="t:div[@type='apparatus']//t:app">
     <xsl:param name="parm-external-app-style" tunnel="yes" required="no"/>
-    <span>
-      <xsl:attribute name="class">
+    <sup>
+      <xsl:text>(</xsl:text>
+      <!--<xsl:attribute name="class">-->
         <xsl:value-of select="@loc"/>
-      </xsl:attribute>
+      <!--</xsl:attribute>
       <xsl:if
         test="@loc and (not(preceding-sibling::t:app) or @loc != preceding-sibling::t:app[1]/@loc)">
         <xsl:value-of select="translate(@loc, ' ', '.')"/>
-        <xsl:text>: </xsl:text>
-      </xsl:if>
+        <xsl:text>)</xsl:text>
+      </xsl:if>-->
+      <xsl:text>)</xsl:text>
+    </sup>
       <xsl:apply-templates/>
-    </span>
+
 
     <xsl:choose>
       <xsl:when test="@loc != following-sibling::t:app[1]/@loc">
