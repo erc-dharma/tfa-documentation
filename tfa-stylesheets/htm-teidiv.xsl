@@ -21,12 +21,14 @@
                   <h2>
                      <xsl:value-of select="/t:TEI/t:teiHeader/t:profileDesc/t:langUsage/t:language[@ident = current()/@xml:lang]"/>
                      <xsl:text> </xsl:text>
-                     <xsl:value-of select="@type"/>
+                     <!-- Changing the first letter of @ref in uppercase-->
+                     <xsl:value-of select="concat(upper-case(substring(@type,1,1)), substring(@type, 2),' '[not(last())] )"/>
                   </h2>
               </xsl:when>
               <xsl:otherwise>
                   <h2>
-                     <xsl:value-of select="@type"/>
+                    <!-- Changing the first letter of @ref in uppercase-->
+                     <xsl:value-of select="concat(upper-case(substring(@type,1,1)), substring(@type, 2),' '[not(last())] )"/>
                      <xsl:if test="string(@subtype)">
                         <xsl:text>: </xsl:text>
                         <xsl:value-of select="@subtype"/>
