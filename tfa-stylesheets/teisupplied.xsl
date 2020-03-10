@@ -16,7 +16,7 @@
       <xsl:choose>
          <xsl:when test="@evidence">
             <xsl:if test="$parm-leiden-style = 'ddbdp' or $parm-leiden-style = 'sammelbuch'">
-               <xsl:text>[</xsl:text>
+                 <span style="color:black;"><xsl:text>[</xsl:text></span>
             </xsl:if>
             <xsl:choose>
                <xsl:when test="@evidence = 'parallel'">
@@ -29,7 +29,7 @@
                </xsl:when>
             </xsl:choose>
             <xsl:if test="$parm-leiden-style = 'ddbdp' or $parm-leiden-style = 'sammelbuch'">
-               <xsl:text>]</xsl:text>
+                 <span style="color:black;"><xsl:text>]</xsl:text></span>
             </xsl:if>
          </xsl:when>
 
@@ -41,7 +41,7 @@
            and supplied elements, but this function is now performed by regex in
            [htm|txt]-tpl-sqbrackets.xsl which is called after all other templates are completed.
         -->
-            <xsl:text>[</xsl:text>
+              <span style="color:black;"><xsl:text>[</xsl:text></span>
             <xsl:choose>
                 <xsl:when test="$parm-edition-type = 'diplomatic'">
                   <xsl:variable name="orig-supplied-content">
@@ -100,7 +100,7 @@
                and supplied elements, but this function is now performed by regex in
                [htm|txt]-tpl-sqbrackets.xsl which is called after all other templates are completed.
            -->
-            <xsl:text>]</xsl:text>
+              <span style="color:black;"><xsl:text>]</xsl:text></span>
          </xsl:otherwise>
       </xsl:choose>
   </xsl:template>

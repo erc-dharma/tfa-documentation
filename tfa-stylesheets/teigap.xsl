@@ -20,9 +20,6 @@
             <xsl:when test="$leidenStyle='london'">
                <xsl:text>&#xb7;</xsl:text>
             </xsl:when>
-            <xsl:when test="$leiden-style='dharma'">
-              <xsl:text></xsl:text>
-          </xsl:when>
             <xsl:otherwise>
                <xsl:text>.</xsl:text>
             </xsl:otherwise>

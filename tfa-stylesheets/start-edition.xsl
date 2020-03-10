@@ -4,7 +4,8 @@
    xmlns:t="http://www.tei-c.org/ns/1.0"
    xmlns:xs="http://www.w3.org/2001/XMLSchema"
    exclude-result-prefixes="t" version="2.0">
-   <xsl:output method="xml" encoding="UTF-8"/>
+   <xsl:output method="xml" encoding="UTF-8" />
+   <!--use-character-maps="myChars"-->
 
    <xsl:include href="global-varsandparams.xsl"/>
 
@@ -59,7 +60,7 @@
    <xsl:include href="htm-tpl-metadata.xsl"/>
    <xsl:include href="htm-tpl-license.xsl"/>
    <xsl:include href="htm-tpl-sqbrackets.xsl"/>
-   
+
    <!-- named templates for localized layout/structure (aka "metadata") -->
     <xsl:include href="htm-tpl-structure.xsl"/>
     <xsl:include href="htm-tpl-struct-creta.xsl"/>
@@ -224,5 +225,14 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
+
+<!-- essai pour gérer les guillemets à completer avec Manu -->
+   <!--<xsl:character-map name="myChars">
+<xsl:output-character character="&#39;" string="&quot;"/>
+<xsl:output-character character="&#96;" string="&quot;"/>
+<xsl:output-character character="&#65282;" string="&quot;"/>
+<xsl:output-character character="&#65287;" string="&quot;"/>
+<xsl:output-character character="&apos;" string="&amp;apos;"/>
+</xsl:character-map>-->
 
 </xsl:stylesheet>

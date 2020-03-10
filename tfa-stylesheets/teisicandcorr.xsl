@@ -21,9 +21,9 @@
          </xsl:when>
          <!-- Adaptation un peu sale pour mettre en place [sic>corr] pour Manu -->
          <xsl:otherwise>
-           <xsl:text>[</xsl:text>
+             <span style="color:black;"><xsl:text>[</xsl:text></span>
             <xsl:apply-templates/>
-            <xsl:text>&gt;</xsl:text>
+            <span style="color:black;"><xsl:text>&gt;</xsl:text></span>
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
@@ -49,7 +49,7 @@
                   <xsl:apply-templates/>
                   <!-- cert-low template found in tpl-certlow.xsl -->
                   <xsl:call-template name="cert-low"/>
-                  <xsl:text>]</xsl:text>
+                  <span style="color:black;"><xsl:text>]</xsl:text></span>
                </xsl:otherwise>
             </xsl:choose>
          </xsl:otherwise>

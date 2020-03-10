@@ -200,7 +200,7 @@
             or ancestor::t:rdg or ancestor::t:del[ancestor::t:choice])
             or ancestor::t:del[@rend='corrected'][parent::t:subst]"/>
          <xsl:otherwise>
-            <sup>
+            <sup style="color:black;">
                   <xsl:choose>
                       <xsl:when test="$parm-leiden-style = 'ddbdp' and following::t:lb[1][ancestor::t:reg[following-sibling::t:orig[not(descendant::t:lb)]]]">
                         <xsl:attribute name="class">

@@ -1,27 +1,27 @@
 .latinnum {
     border-top: thin black solid;
      }
-     
+
 .supraline {
     border-top: thin black solid;
      }
-     
+
 .previouslyread {
     text-decoration: underline;
      }
-     
+
 *[lang="la"] {
     font-family: "GentiumAlt", "Gentium","Palatino Linotype", "Palatino", "Times New Roman", "Times", "Arial Unicode MS", serif;
 }
 
 *[lang="grc"] {
-    font-family: "Lucida Grande", "Arial Unicode MS","Galilee Unicode Gk", "New Athena Unicode", "Athena Unicode", 
-    "Palatino Linotype", "Titus Cyberbit Basic", "Cardo", "Vusillus Old Face", "Alphabetum", "Galatia SIL", 
-    "Code 2000", "GentiumAlt", "Gentium", "Minion Pro", "GeorgiaGreek", "Vusillus Old Face Italic", 
-    "Everson Mono", "Aristarcoj", "Porson", "Legendum", "Aisa Unicode", "Hindsight Unicode", "Caslon", 
+    font-family: "Lucida Grande", "Arial Unicode MS","Galilee Unicode Gk", "New Athena Unicode", "Athena Unicode",
+    "Palatino Linotype", "Titus Cyberbit Basic", "Cardo", "Vusillus Old Face", "Alphabetum", "Galatia SIL",
+    "Code 2000", "GentiumAlt", "Gentium", "Minion Pro", "GeorgiaGreek", "Vusillus Old Face Italic",
+    "Everson Mono", "Aristarcoj", "Porson", "Legendum", "Aisa Unicode", "Hindsight Unicode", "Caslon",
     "Verdana", "Tahoma";
    }
-   
+
 .textpart {
     left: 6em;
     line-height: 1.4;
@@ -35,13 +35,13 @@
     padding-right: 0.2em;
     position: absolute;
     }
-    
+
 .linenumber {
     left: -4em;
     padding-right: 0.2em;
     position: absolute;
     }
-    
+
 .linenumberbroken {
     left: -4em;
     padding-right: 0.2em;
@@ -49,11 +49,11 @@
     color: red ;
     text-decoration: blink ;
     }
-    
+
 .petraeligature {
     text-decoration: underline;
     }
-    
+
 .underline {
     text-decoration: underline;
     }
@@ -61,10 +61,10 @@
 .italic {
     font-style: italic;
     }
-    
+
 h4.slimmer {
     margin-bottom: -0.5em;
-    }    
+    }
 
 h3.iospe {
     color: rgb(40, 80, 114);
@@ -116,4 +116,3 @@ div#edition.iospe {
 div.iospe {
     margin-left:165px;
     }
-

@@ -22,9 +22,9 @@
         -->
         <xsl:for-each
           select="(.//t:choice | .//t:subst | .//t:app)[not(ancestor::t:*[local-name()=('choice','subst','app')])] |
-               .//t:hi[@rend=('diaeresis','grave','acute','asper','lenis','circumflex')][not(ancestor::t:*[local-name()=('orig','reg','sic','corr','lem','rdg') 
-               or self::t:del[@rend='corrected'] 
-               or self::t:add[@place='inline']][1][local-name()=('reg','corr','rdg') 
+               .//t:hi[@rend=('diaeresis','grave','acute','asper','lenis','circumflex')][not(ancestor::t:*[local-name()=('orig','reg','sic','corr','lem','rdg')
+               or self::t:del[@rend='corrected']
+               or self::t:add[@place='inline']][1][local-name()=('reg','corr','rdg')
                or self::t:del[@rend='corrected']])] |
            .//t:del[@rend='slashes' or @rend='cross-strokes'] | .//t:milestone[@rend = 'box']">
 
@@ -214,15 +214,15 @@
     <xsl:param name="context"/>
       <xsl:apply-templates mode="iospe-context" select="$context"/>
   </xsl:template>
-  
+
   <xsl:template mode="iospe-context" match="t:reg|t:corr|t:add|t:ex|t:rdg"/>
-  
+
   <xsl:template mode="iospe-context" match="text()">
     <xsl:value-of
       select="upper-case(translate(normalize-unicode(.,'NFD'),'&#x0301;&#x0313;&#x0314;&#x0342;',''))"
     />
   </xsl:template>
-  
+
   <xsl:template mode="iospe-context" match="t:gap|t:supplied[@reason='lost']">
     <xsl:choose>
       <xsl:when test="@quantity ">
@@ -266,7 +266,7 @@
 <xsl:call-template name="intappchoice"/>
           </xsl:element>
         </xsl:for-each>
-       
+
   <xsl:for-each select=".//t:choice[child::t:corr and not(ancestor::t:rdg)]">
     <xsl:element name="app">
       <xsl:attribute name="n">
@@ -374,13 +374,13 @@
         </xsl:for-each>
       </p>
   </xsl:template>
-  
+
 
 <!--this only renders choice and app-->
   <xsl:template name="tpl-minex-apparatus">
-    
+
     <xsl:variable name="listapp"><!-- generate a list of app entries, with line numbers for each (and render them later) -->
-      
+
       <xsl:for-each select=".//t:choice[child::t:reg and not(ancestor::t:rdg)]">
         <xsl:element name="app">
           <xsl:attribute name="n">
@@ -390,7 +390,7 @@
           <xsl:call-template name="intappchoice"/>
         </xsl:element>
       </xsl:for-each>
-      
+
       <xsl:for-each select=".//t:choice[child::t:corr and not(ancestor::t:rdg)]">
         <xsl:element name="app">
           <xsl:attribute name="n">
@@ -400,7 +400,7 @@
           <xsl:call-template name="intappsiccorr"/>
         </xsl:element>
       </xsl:for-each>
-      
+
       <xsl:for-each select=".//t:app[@type='editorial']">
         <xsl:element name="app">
           <xsl:attribute name="n">
@@ -410,7 +410,7 @@
           <xsl:call-template name="intappedit"/>
         </xsl:element>
       </xsl:for-each>
-      
+
       <xsl:for-each select=".//t:app[@type='alternative']">
         <xsl:element name="app">
           <xsl:attribute name="n">
@@ -420,9 +420,9 @@
           <xsl:call-template name="intappapp"/>
         </xsl:element>
       </xsl:for-each>
-      
+
     </xsl:variable>
-    
+
     <!--generate the actual apparatus printing the separators between each info and the reference to line number-->
     <p class="miniapp">
       <xsl:if test="ancestor-or-self::t:div[@type='textpart'][@n]">
@@ -456,17 +456,17 @@
 </xsl:template>
 
   <xsl:template name="intappedit">
-    <xsl:if test="t:lem/@source"><xsl:value-of select="t:lem/@source"/><xsl:text>; </xsl:text></xsl:if>
+    <xsl:if test="t:lem/@source"><xsl:value-of select="t:lem/@source"/><xsl:text>— </xsl:text></xsl:if>
       <xsl:apply-templates select="t:rdg"/>
-      <xsl:if test="t:rdg/@source"><xsl:text> </xsl:text><xsl:value-of select="t:rdg/@source"/><xsl:text>; </xsl:text></xsl:if>
+      <xsl:if test="t:rdg/@source"><xsl:text> </xsl:text><xsl:value-of select="t:rdg/@source"/><xsl:text>— </xsl:text></xsl:if>
   </xsl:template>
-  
+
 <!--Correction Without Specification-->
 
   <xsl:template name="intappcorr">
-    
+
         <xsl:value-of select="."/><xsl:text> corr.</xsl:text>
-       
+
   </xsl:template>
 
   <!--   Erroneous Substitution
@@ -475,7 +475,7 @@ choice with sic and corr
 
 -->
   <xsl:template name="intappsiccorr">
-    
+
         <xsl:text>sic, orig. </xsl:text>
         <xsl:value-of select="t:sic"/>
   </xsl:template>
@@ -495,15 +495,15 @@ choice with reg and orig -->
   </xsl:if>
   <xsl:value-of select="t:orig"/>
 </xsl:template>
-  
 
-  <!-- Ambiguous Characters With Alternatives Offered 
-choice and multiple unclear (but this currently is not 
+
+  <!-- Ambiguous Characters With Alternatives Offered
+choice and multiple unclear (but this currently is not
 handled in the default to render in the text only one unclear or preferred letter)
 
 -->
   <xsl:template name="intappunclear">
-   
+
 <xsl:if test="self::t:choice">
       </xsl:if>
     <xsl:for-each select="t:unclear">
@@ -514,12 +514,12 @@ handled in the default to render in the text only one unclear or preferred lette
 
 
   <!-- Ancient Corrections (Where Both Old And New Text Can Be Read)
-subst with del and add 
+subst with del and add
 
 in the text the text  after correction is printed, in apparatus instead the text originally written
 -->
   <xsl:template name="intappsubst">
-     
+
   <xsl:if test="self::t:subst and child::t:add and child::t:del">
     <xsl:text>del </xsl:text>
     <xsl:call-template name="iospe-appcontext">
@@ -532,7 +532,7 @@ in the text the text  after correction is printed, in apparatus instead the text
   <xsl:value-of select="t:del"/>
 
   </xsl:template>
-  
+
 
 
   <!-- Ancient Corrections (Old Text Lost) -->
@@ -541,14 +541,14 @@ in the text the text  after correction is printed, in apparatus instead the text
   </xsl:template>
 
 
-  <!-- Text Addition By Ancient Hand 
+  <!-- Text Addition By Ancient Hand
 
 <add place="above">αβ</add>
 -->
 
   <xsl:template name="intappaddabovebelow">
     <xsl:param name="parm-leiden-style" tunnel="yes" required="no"></xsl:param>
-   
+
         <xsl:value-of select="."/><xsl:text> add </xsl:text><xsl:value-of select="@place"/>
   </xsl:template>
 
@@ -556,7 +556,7 @@ in the text the text  after correction is printed, in apparatus instead the text
   <!--Raised/Lowered Characters -->
   <xsl:template name="intapphi">
     <xsl:param name="parm-leiden-style" tunnel="yes" required="no"></xsl:param>
- 
+
   <xsl:value-of select="@rend"/>
   </xsl:template>
 

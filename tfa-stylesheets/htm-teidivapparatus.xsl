@@ -187,24 +187,47 @@
     </sup>
       <xsl:apply-templates/>
 
-
+<!-- changement du ; en — pour l'apparat d'Arlo -->
     <xsl:choose>
       <xsl:when test="@loc != following-sibling::t:app[1]/@loc">
         <br/>
       </xsl:when>
       <xsl:when test="following-sibling::t:app">
-        <xsl:text>; </xsl:text>
+        <xsl:text>— </xsl:text>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
 
   <xsl:template match="t:div[@type = 'apparatus']//t:rdg">
     <xsl:param name="parm-external-app-style" tunnel="yes" required="no"/>
+    <xsl:element name="span">
+       <xsl:attribute name="style">color:#28B463;</xsl:attribute>
     <xsl:apply-templates/>
-
-    <xsl:call-template name="sources">
+  </xsl:element>
+  <xsl:if test="//t:rdg/@source">
+<!-- ajout de la couleur sur rdg et transformation du @source en sigle -->
+    <span style="color:#3498DB;">
+      <xsl:text> </xsl:text>
+      <xsl:choose>
+        <xsl:when test="matches(@source, '\+[a][l]')">
+          <xsl:value-of select="normalize-space(translate(@source,'abcdefghijklmnopqrstuvwxyz0123456789+-_:',''))"/>
+          <xsl:text> &amp; al.</xsl:text>
+        </xsl:when>
+        <xsl:when test="matches(@source, '\+[A-Z]')">
+          <xsl:value-of select="normalize-space(translate(substring-before(@source, '+'),'abcdefghijklmnopqrstuvwxyz0123456789+-_:',''))"/>
+          <xsl:text>&amp;</xsl:text>
+          <xsl:value-of select="normalize-space(translate(substring-after(@source, '+'),'abcdefghijklmnopqrstuvwxyz0123456789+-_:',''))"/>
+          <xsl:text> </xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+       <xsl:value-of select="normalize-space(translate(@source,'abcdefghijklmnopqrstuvwxyz0123456789-_:',''))"/>
+       </xsl:otherwise>
+       </xsl:choose>
+  </span>
+  </xsl:if>
+    <!--<xsl:call-template name="sources">
       <xsl:with-param name="root" select="ancestor-or-self::t:TEI"/>
-    </xsl:call-template>
+    </xsl:call-template>-->
 
     <xsl:if test="following-sibling::t:rdg and not(following-sibling::*[1][self::t:note])">
       <xsl:text>; </xsl:text>
@@ -214,25 +237,29 @@
 
   <xsl:template match="t:div[@type = 'apparatus']//t:lem">
     <xsl:param name="parm-external-app-style" tunnel="yes" required="no"/>
+    <xsl:element name="b">
     <xsl:apply-templates/>
-
+  </xsl:element>
     <xsl:call-template name="sources">
       <xsl:with-param name="root" select="ancestor-or-self::t:TEI"/>
     </xsl:call-template>
 
+<!-- Ask Manu, if he wants to delete the : for ◇. Arlo susggested also just a blank space -->
     <xsl:if
       test="following-sibling::t:* and not(following-sibling::t:*[1][self::t:note]) and not(@source)">
-      <xsl:text>: </xsl:text>
+      <xsl:text>◇ </xsl:text>
     </xsl:if>
   </xsl:template>
 
+<!-- addition of a • before any note made in the apparatus.-->
   <xsl:template match="t:div[@type = 'apparatus']//t:note">
     <xsl:param name="parm-external-app-style" tunnel="yes" required="no"/>
     <span>
       <xsl:if test="ancestor::t:app">
+        <xsl:text>• </xsl:text>
         <xsl:apply-templates/>
         <xsl:if test="preceding-sibling::t:rdg and following-sibling::t:rdg">
-          <xsl:text>; </xsl:text>
+          <xsl:text>• </xsl:text>
         </xsl:if>
       </xsl:if>
     </span>

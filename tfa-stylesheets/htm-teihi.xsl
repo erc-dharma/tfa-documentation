@@ -40,9 +40,9 @@
          <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
          <!-- @rend='plain'                                                      -->
          <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-         <xsl:when test="@rend='grantha'">
-             <xsl:element name="span">
-                 <xsl:attribute name="style">color:red;</xsl:attribute>
+         <xsl:when test="@rend='grantha'">   
+               <xsl:element name="span">
+                 <xsl:attribute name="style">color:#E74C3C;</xsl:attribute>
                  <xsl:apply-templates/>
              </xsl:element>
          </xsl:when>
