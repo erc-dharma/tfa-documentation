@@ -11,12 +11,12 @@
         <xsl:param name="parm-internal-app-style" tunnel="yes" required="no"/>
         <xsl:param name="parm-external-app-style" tunnel="yes" required="no"/>
        <div id="edition">
-        
+
 <!-- Found in htm-tpl-lang.xsl -->
          <xsl:call-template name="attr-lang"/>
          <xsl:apply-templates/>
 
-         
+
            <xsl:choose>
                <!-- Apparatus creation: look in tpl-apparatus.xsl for documentation and templates -->
                <xsl:when test="$parm-internal-app-style = 'ddbdp'">
@@ -31,7 +31,7 @@
                    <!-- Template to be added in htm-tpl-apparatus.xsl -->
                    <xsl:call-template name="tpl-fullex-apparatus"/>
                </xsl:when>
-               
+
 <xsl:when test="$parm-internal-app-style ='minex'">
                    <!-- Template to be added in htm-tpl-apparatus.xsl -->
                    <xsl:call-template name="tpl-minex-apparatus"/>
@@ -76,5 +76,12 @@
            <!-- Template found in htm-tpl-apparatus.xsl -->
            <xsl:call-template name="tpl-iospe-apparatus"/>
        </xsl:if>
+   </xsl:template>
+
+<!-- Ajout DHARMA pour les <pb/> -->
+   <xsl:template match="t:div[@type='edition']//t:pb[@n]">
+          <sup><xsl:text>⎘ </xsl:text>
+            <xsl:value-of select="@n"/></sup>
+            <br/>
    </xsl:template>
 </xsl:stylesheet>
