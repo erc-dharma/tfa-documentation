@@ -38,15 +38,12 @@
        <xsl:param name="parm-leiden-style" tunnel="yes" required="no"></xsl:param>
        <!-- Heading for a ddb style file -->
          <h1>
-            <xsl:choose>
-               <xsl:when test="//t:sourceDesc//t:bibl/text()">
-                  <xsl:value-of select="//t:sourceDesc//t:bibl"/>
-               </xsl:when>
-               <xsl:otherwise>
                   <xsl:value-of select="//t:teiHeader//t:title"/>
-               </xsl:otherwise>
-            </xsl:choose>
-         </h1>
+                  <xsl:text> (</xsl:text>
+                  <xsl:value-of select="//t:idno[@type='filename']"/>
+                  <xsl:text>)</xsl:text>
+        </h1>
+
 
       <!-- Main text output -->
       <xsl:variable name="maintxt">
