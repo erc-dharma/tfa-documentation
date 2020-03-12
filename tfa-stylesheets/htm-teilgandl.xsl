@@ -34,9 +34,11 @@
             </xsl:variable>
             <br id="a{$div-loc}l{@n}"/>
               <xsl:if test="number(@n) and @n mod number($parm-line-inc) = 0 and not(@n = 0)">
-               <sup class="linenumber">
+               <span class="linenumber" style="color:purple;">
+                 <xsl:text>(</xsl:text>
                   <xsl:value-of select="@n"/>
-               </sup>
+                  <xsl:text>) </xsl:text>
+               </span>
             </xsl:if>
             <!-- found in teilgandl.xsl -->
         <xsl:call-template name="line-context"/>
@@ -47,4 +49,12 @@
       </xsl:choose>
   </xsl:template>
 
+<!--<xsl:template match="//div[@type='edition']//t:l">
+  <xsl:if test="t:l">
+      <xsl:element name="span">
+          <xsl:apply-templates/>
+      </xsl:element>
+      <br/>
+  </xsl:if>
+</xsl:template>-->
 </xsl:stylesheet>

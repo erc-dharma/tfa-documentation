@@ -9,7 +9,7 @@
 
   <parameter>
     <name>leiden-style</name>
-    <value>dharma</value>
+    <value on="yes">dharma</value>
     <value>ddbdp</value>
     <value>dohnicht</value>
     <value>edh-itx</value>
@@ -18,7 +18,7 @@
     <value>ila</value>
     <value>iospe</value>
     <value>london</value>
-    <value on="yes">panciera</value>
+    <value >panciera</value>
     <value>petrae</value>
     <value>rib</value>
     <value>seg</value>
@@ -43,8 +43,8 @@
 
   <parameter>
     <name>verse-lines</name>
-    <value on="yes">off</value><!-- print epigraphic lines at all times, whether text in ab or lg/l -->
-    <value>on</value><!-- print verse lines when text in lg/l; interpret gaps as metre where so tagged -->
+    <value>yes</value><!-- print epigraphic lines at all times, whether text in ab or lg/l -->
+    <value on="yes">on</value><!-- print verse lines when text in lg/l; interpret gaps as metre where so tagged -->
   </parameter>
 
   <parameter>
