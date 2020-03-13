@@ -49,12 +49,4 @@
       </xsl:choose>
   </xsl:template>
 
-<!--<xsl:template match="//div[@type='edition']//t:l">
-  <xsl:if test="t:l">
-      <xsl:element name="span">
-          <xsl:apply-templates/>
-      </xsl:element>
-      <br/>
-  </xsl:if>
-</xsl:template>-->
 </xsl:stylesheet>

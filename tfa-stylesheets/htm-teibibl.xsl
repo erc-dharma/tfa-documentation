@@ -6,26 +6,26 @@
 
 Pietro notes on 14/8/2015 work on this template, from mail to Gabriel.
 
-- I have converted the TEI bibliography of IRT and IGCyr to ZoteroRDF 
-(https://github.com/EAGLE-BPN/BiblioTEI2ZoteroRDF) in this passage I have tried to 
+- I have converted the TEI bibliography of IRT and IGCyr to ZoteroRDF
+(https://github.com/EAGLE-BPN/BiblioTEI2ZoteroRDF) in this passage I have tried to
 distinguish books, bookparts, articles and conference proceedings.
 
-- I have uploaded these to the zotero eagle open group bibliography 
+- I have uploaded these to the zotero eagle open group bibliography
 (https://www.zotero.org/groups/eagleepigraphicbibliography)
 
-- I have created a parametrized template in my local epidoc xslts which looks at the json 
-and TEI output of the Zotero api basing the call on the content of ptr/@target in each 
-bibl. It needs both because the key to build the link is in the json but the TEI xml is 
-much more accessible for the other data. I tried also to grab the html div exposed in the 
-json, which would have been the easiest thing to do, but I can only get it escaped and 
+- I have created a parametrized template in my local epidoc xslts which looks at the json
+and TEI output of the Zotero api basing the call on the content of ptr/@target in each
+bibl. It needs both because the key to build the link is in the json but the TEI xml is
+much more accessible for the other data. I tried also to grab the html div exposed in the
+json, which would have been the easiest thing to do, but I can only get it escaped and
 thus is not usable.
-** If set on 'zotero' it prints surname, name, title and year with a link to the zotero 
+** If set on 'zotero' it prints surname, name, title and year with a link to the zotero
 item in the eagle group bibliography. It assumes bibl only contains ptr and citedRange.
-** If set on 'localTEI' it looks at a local bibliography (no zotero) and compares the 
-@target to the xml:id to take the results and print something (in the sample a lot, but 
+** If set on 'localTEI' it looks at a local bibliography (no zotero) and compares the
+@target to the xml:id to take the results and print something (in the sample a lot, but
 I'd expect more commonly Author-Year references(.
-** I have also created sample values for irt and igcyr which are modification of the 
-zotero option but deal with some of the project specific ways of encoding the 
+** I have also created sample values for irt and igcyr which are modification of the
+zotero option but deal with some of the project specific ways of encoding the
 bibliography. All examples only cater for book and article.
 
 
@@ -33,19 +33,19 @@ bibliography. All examples only cater for book and article.
 -->
 
 	<!--
-		
+
 		Pietro Notes on 10.10.2016
-		
+
 		this should be modified based on parameters to
-		
+
 		* decide wheather to use zotero or a local version of the bibliography in TEI
-	
+
 		* assuming that the user has entered a unique tag name as value of ptr/@target, decide group or user in zotero to look up based on parameter value entered at transformation time
-	
+
 		* output style based on Zotero Style Repository stored in a parameter value entered at transformation time
-		
-		
-	
+
+
+
 	-->
 
 	<xsl:template match="t:bibl" priority="1">
@@ -58,13 +58,13 @@ bibliography. All examples only cater for book and article.
 
 
 		<xsl:choose>
-			<!-- default general zotero behaviour prints 
-				author surname and name, title in italics, date and links to the zotero item page on the zotero bibliography. 
-				assumes the inscription source has no free text in bibl, 
+			<!-- default general zotero behaviour prints
+				author surname and name, title in italics, date and links to the zotero item page on the zotero bibliography.
+				assumes the inscription source has no free text in bibl,
 				!!!!!!!only a <ptr target='key'/> and a <citedRange>pp. 45-65</citedRange>!!!!!!!
 			it also assumes that the content of ptr/@target is a unique tag used in the zotero bibliography as the ids assigned by Zotero are not
 			reliable enough for this purpose according to Zotero forums.
-			
+
 			if there is no ptr/@target, this will try anyway and take a lot of time.
 			-->
 
@@ -75,7 +75,7 @@ bibliography. All examples only cater for book and article.
 			<xsl:when test="$parm-bib = 'zotero'">
 				<xsl:choose>
 					<!--					check if there is a ptr at all
-					
+
 					WARNING. if the pointer is not there, the transformation will simply stop and return a premature end of file message e.g. it cannot find what it is looking for via the zotero api
 					-->
 					<xsl:when test=".[t:ptr]">
@@ -102,8 +102,8 @@ bibliography. All examples only cater for book and article.
 								select="concat('https://api.zotero.org/',$parm-zoteroUorG,'/',$parm-zoteroKey,'/items?tag=', $biblentry, '&amp;format=json&amp;style=',$parm-zoteroStyle,'&amp;include=citation')"
 							/>
 						</xsl:variable>
-			
-						
+
+
 						<xsl:variable name="unparsedtext" select="unparsed-text($zoteroapijson)"/>
 						<xsl:variable name="zoteroitemKEY">
 
@@ -221,8 +221,9 @@ bibliography. All examples only cater for book and article.
 									<xsl:value-of select="$textref//t:biblScope"/>
 
 								</xsl:when>
+
 								<xsl:otherwise>
-									<!--if this appears the id do not really correspond to each other, 
+									<!--if this appears the id do not really correspond to each other,
 									ther might be a typo or a missing entry in the bibliography-->
 									<xsl:message>
 										<xsl:text> there is no entry in your bibliography file at </xsl:text>
@@ -244,7 +245,7 @@ bibliography. All examples only cater for book and article.
 
 								</xsl:when>
 								<xsl:otherwise>
-									<!--if this appears the id do not really correspond to each other, 
+									<!--if this appears the id do not really correspond to each other,
 									ther might be a typo or a missing entry in the bibliography-->
 									<xsl:message>
 										<xsl:text> there is no entry in your bibliography file at </xsl:text>
@@ -267,6 +268,33 @@ bibliography. All examples only cater for book and article.
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
+
+
+<!--<xsl:template match="//t:bibl/t:ptr">
+	<xsl:choose>
+	<xsl:when test="@target">
+			<xsl:choose>
+				<xsl:when test="matches(@target, '\+[a][l]')">
+					<xsl:value-of select="normalize-space(translate(@target,'bib:0123456789+-_:',''))"></xsl:value-of>
+					<xsl:text> and al. </xsl:text>
+					<xsl:value-of select="normalize-space(translate(substring-before(@target, '_'),'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+-_:',''))"> </xsl:value-of>
+					<xsl:text> (</xsl:text>
+					<xsl:value-of select="normalize-space(translate(@target,'abcdefghijklmnopqrstuvwxyz0123456789+-_:',''))"/>
+					<xsl:text> &amp; al.)</xsl:text>
+				</xsl:when>
+				<xsl:when test="matches(@target, '\+[A-Z]')">
+					<xsl:value-of select="normalize-space(translate(substring-before(@target, '+'),'abcdefghijklmnopqrstuvwxyz0123456789+-_:',''))"/>
+					<xsl:text>&amp;</xsl:text>
+					<xsl:value-of select="normalize-space(translate(substring-after(@target, '+'),'abcdefghijklmnopqrstuvwxyz0123456789+-_:',''))"/>
+					<xsl:text> </xsl:text>
+				</xsl:when>
+				<xsl:otherwise>
+			 <xsl:value-of select="normalize-space(translate(@target,'abcdefghijklmnopqrstuvwxyz0123456789-_:',''))"/>
+			 </xsl:otherwise>
+			 </xsl:choose>
+</xsl:when>
+</xsl:choose>
+</xsl:template>-->
 
 
 </xsl:stylesheet>

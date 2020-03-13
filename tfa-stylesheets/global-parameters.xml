@@ -85,7 +85,7 @@
     <value>../BIBLIOGRAPHY.xml</value>
   </parameter>
 
-  <parameter> if the zotero bibliography is used, select whether it is a group library or a user's library
+  <parameter> <!--if the zotero bibliography is used, select whether it is a group library or a user's library-->
     <name>ZoteroUorG</name>
     <value on="yes">groups</value>
     <value>users</value>
@@ -94,14 +94,14 @@
 
   <parameter> <!--the key of the library-->
     <name>ZoteroKey</name>
-    <value on="yes">247748</value><!--EAGLE open group bibliography-->
-    <value>epidig</value> <!--sample value-->
+    <value on="yes">1633743</value><!--DHARMA group Library ID-->
+    <value>dharma</value> <!--sample value-->
   </parameter>
 
   <parameter> <!--the namespace of tags in the zotero library if any-->
     <name>ZoteroNS</name>
     <value on="yes"/> <!--default on no namespace although the htm-teibibl.xsl takes this value only if selected-->
-    <value>igcyr:</value>
+    <value>bib:</value>
   </parameter>
 
 
