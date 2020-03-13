@@ -12,8 +12,10 @@
         <xsl:param name="parm-external-app-style" tunnel="yes" required="no"/>
        <div id="edition">
 
+
 <!-- Found in htm-tpl-lang.xsl -->
          <xsl:call-template name="attr-lang"/>
+         <h2>Edition</h2>
          <xsl:apply-templates/>
 
 
