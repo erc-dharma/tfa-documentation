@@ -62,10 +62,6 @@
     font-style: italic;
     }
 
-p {
-    margin-left: 100px;
-    }
-
 h4.slimmer {
     margin-bottom: -0.5em;
     }
@@ -113,7 +109,7 @@ dl.iospe dd {
     vertical-align: baseline;
     }
 
-div#edition.iospe {
+div#edition {
     margin-left: 100px;
     }
 
