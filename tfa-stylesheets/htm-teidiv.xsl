@@ -25,6 +25,15 @@
                      <xsl:value-of select="concat(upper-case(substring(@type,1,1)), substring(@type, 2),' '[not(last())] )"/>
                   </h2>
               </xsl:when>
+              <xsl:when test="//t:div[@type='textpart']">
+                <h3>
+                <xsl:value-of select="concat(upper-case(substring(@type,1,1)), substring(@type, 2),' '[not(last())] )"/>
+                <xsl:text>: </xsl:text>
+                <xsl:value-of select="@subtype"/>
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="@n"/>
+              </h3>
+                </xsl:when>
               <xsl:otherwise>
                   <h2>
                     <!-- Changing the first letter of @ref in uppercase-->
