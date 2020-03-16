@@ -37,13 +37,13 @@
     }
 
 .linenumber {
-    left: -24em;
+    left: -4em;
     padding-right: 0.2em;
     position: absolute;
     }
 
 .linenumberbroken {
-    left: -24em;
+    left: -4em;
     padding-right: 0.2em;
     position: absolute;
     color: red ;
@@ -60,6 +60,10 @@
 
 .italic {
     font-style: italic;
+    }
+
+div#edition {
+    margin-left: 100px;
     }
 
 h4.slimmer {
