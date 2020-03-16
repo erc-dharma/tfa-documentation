@@ -37,13 +37,13 @@
     }
 
 .linenumber {
-    left: -4em;
+    left: -24em;
     padding-right: 0.2em;
     position: absolute;
     }
 
 .linenumberbroken {
-    left: -4em;
+    left: -24em;
     padding-right: 0.2em;
     position: absolute;
     color: red ;
